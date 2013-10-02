@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title><%=h html_title %></title>
+<meta name="description" content="<%= Redmine::Info.app_name %>" />
+<meta name="keywords" content="issue,bug,tracker" />
+<%= csrf_meta_tag %>
+<%= favicon %>
+<%= javascript_heads %>
+</head>
+
+<body>
+<div style="width: 100%;">
+  <div style="margin: 0 50%; min-width: 700px;">
+    <div style="margin: 0 -50%; width: 100%;">
+      <h2><%= l(:warning_technical_operations_in_progress) %></h2>
+      <%= l(:label_dear_colleagues) %><br>
+      <%= l(:infromation_technical_operations_emergency, :time_end => format_time(@uc_period.end_date+DateTime.now.utc_offset)) %>
+      <br><br>
+      <%= @uc_period.custom_message if @uc_period.custom_message && @uc_period.custom_message != '' %>
+      <br><br>
+      <a id="logout_linkddd" class="logout" rel="nofollow" data-method="post" href="/logout">
+        <span><%= l(:label_logout) %></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#logout_link").click(function() {
+    jQuery.ajax({ type: 'POST',
+                url: '/logout' });
+  })
+});
+</script>
+</body>
+</html>

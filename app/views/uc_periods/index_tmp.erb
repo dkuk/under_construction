@@ -1,0 +1,37 @@
+<div class="contextual">
+  <%= link_to(l(:label_add_construction_period), {:controller => 'uc_periods', :action => 'new'}, :class => 'icon icon-add')  %>
+</div>
+
+<h2><%= l(:label_technical_periods) %></h2>
+
+<br />
+<table class='list'>
+  <tr>
+    <th><%= l(:label_begin_date) %></th>
+    <th><%= l(:label_end_date) %></th>
+    <th><%= l(:label_technical_message) %></th>
+    <th class="button_area">&nbsp;</th>
+  </tr>  
+<% @uc_periods.each do |uc| %>
+  <tr>
+    <td><%= uc.begin_date %></td>
+    <td><%= uc.end_date %></td>
+    <td><%= uc.custom_message %></td>
+    <td class="button_area">
+                            <%= link_to( l(:button_edit), 
+                                         {:controller => 'uc_periods', :id => uc.id, :action => 'edit'},
+                                         :class => 'icon icon-edit') %>      
+                            <%= link_to( l(:button_turn_off), 
+                                         {:controller => 'uc_periods', :id => uc.id, :action => 'off'},
+                                         :confirm => l(:label_disable_technical_period),
+                                         :class => 'icon icon-off') unless uc.disabled %>
+                            <%= link_to( l(:button_delete), uc_period_path(uc),
+                                          :confirm => l(:label_drop_technical_period),
+                                          :method => :delete, 
+                                          :action => :destory, 
+                                          :class => 'icon icon-del') %>
+    </td>
+  </tr>                        
+<% end %>
+  </tr>
+</table>

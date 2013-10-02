@@ -1,0 +1,46 @@
+<h2><%= l(:admin_menu_under_construction) %></h2>
+
+<%= form_for @uc_period do |f| %>
+<% if false %>
+<p>
+  <%= label_tag('tech_period', l(:label_tech_period)) %>
+  <%#= label_tag("f_#{field[:field]}_take_new", l(:label_issue_take_new_from_field)) %>
+  <%= f.date_select :begin_date %>
+  <%= f.time_select :begin_date, :ignore_date => true %>
+  <%= f.text_field(:begin_date, :size => 10) %>
+  <%= calendar_for("uc_period_begin_date") %>
+  <%= f.time_select(:begin_date, :ignore_date => true) %>  
+  <span>-</span>
+  <%= f.text_field(:end_date, :size => 10) %>
+  <%= calendar_for("uc_period_end_date") %>
+  <%= f.time_select :end_date, :ignore_date => true %>
+</p>
+<% end %>
+<table>
+  <tr>
+    <td><%= label_tag('begin_date', l(:field_tech_begin_date)) %></td>
+    <td><%= f.date_select :begin_date %><%= f.time_select :begin_date, :ignore_date => true %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag('end_date', l(:field_tech_end_date)) %></td>
+    <td><%= f.date_select :end_date %><%= f.time_select :end_date, :ignore_date => true %></td>
+  </tr>  
+  <tr>
+    <td style="vertical-align: top;"><%= label_tag('tech_period', l(:field_custom_message)) %></td>
+    <td><%= f.text_area :custom_message,
+                      :cols => 60,
+                      :rows => 5,
+                      :class => 'wiki-edit' %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag('turned_on', l(:field_turned_on)) %></td>
+    <td><%= f.check_box :turned_on %></td>
+  </tr>  
+
+  <tr>
+    <td><%= label_tag('notify', l(:field_notify_about)) %></td>
+    <td><%= check_box_tag(:notify_users, true, false) %></td>
+  </tr>
+</table>
+  <%= f.submit(l(:button_save)) %>
+<% end %>

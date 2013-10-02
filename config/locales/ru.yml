@@ -1,0 +1,18 @@
+# English strings go here for Rails i18n
+ru:
+  admin_menu_under_construction: "Тех. работы"
+  label_tech_period: "Период тех. работ"
+  field_custom_message: "Сообщение"
+  field_tech_begin_date: "Начало работ"
+  field_tech_end_date: "Окончание работ"
+  field_turned_on: "Режим тех. работ включен"
+  field_notify_about: "Разослать уведомление"
+
+  notice_tech_period_saved: "Период тех. работ сохранен"
+  warning_technical_operations_in_progress: "Технические работы!"
+
+  label_dear_colleagues: "Уважаемые коллеги!"
+  infromation_technical_operations_planing: "На сервере Redmine с %{time_start} по %{time_end} будут проводиться технические работы! Просим завершить свою деятельность в RM к указанному периоду."
+  infromation_technical_operations_ends: "Технические работы завершены. Redmine работает в штатном режиме"
+  infromation_technical_operations_emergency: "На сервере Redmine проводятся технические работы, которые продлятся по %{time_end}."
+

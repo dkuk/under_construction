@@ -1,0 +1,4 @@
+# English strings go here for Rails i18n
+en:
+  admin_menu_under_construction: "Under Construction"
+  plugin_test_under_construction: "under_construction"
