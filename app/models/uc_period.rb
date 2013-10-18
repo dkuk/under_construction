@@ -12,17 +12,17 @@ class UcPeriod < ActiveRecord::Base
     # get current server time (with timezone)
     # setuped time in DB saved as UTC +00. So compare as current server time without timezone
     time ||= DateTime.now
-    turned_on && begin_date-time.utc_offset <= time && end_date-time.utc_offset > time
+    turned_on && begin_date && begin_date-time.utc_offset <= time && end_date && end_date-time.utc_offset > time
   end
 
   def planning?(time=nil)
     time ||= DateTime.now
-    turned_on && begin_date-time.utc_offset > time
+    turned_on && begin_date && begin_date-time.utc_offset > time
   end
 
   def manual_off?(time=nil)
     time ||= DateTime.now
-    !turned_on && begin_date-time.utc_offset <= time && end_date-time.utc_offset > time
+    !turned_on && begin_date && begin_date-time.utc_offset <= time && end_date && end_date-time.utc_offset > time
   end
 
 
