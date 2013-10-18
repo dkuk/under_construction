@@ -8,28 +8,32 @@
 <%= csrf_meta_tag %>
 <%= favicon %>
 <%= javascript_heads %>
+<%= stylesheet_link_tag 'bootstrap_buttons_alerts.css', :plugin => :under_construction %>
 </head>
 
 <body>
-<div style="width: 100%;">
+<div style="width: 100%; top:30%; position: fixed; ">
   <div style="margin: 0 50%; min-width: 700px;">
-    <div style="margin: 0 -50%; width: 100%;">
+    <div class="alert alert-warning" style="margin: 0 -50%; width: 100%;">
       <h2><%= l(:warning_technical_operations_in_progress) %></h2>
-      <%= l(:label_dear_colleagues) %><br>
-      <%= l(:infromation_technical_operations_emergency, :time_end => format_time(@uc_period.end_date+DateTime.now.utc_offset)) %>
-      <br><br>
-      <%= @uc_period.custom_message if @uc_period.custom_message && @uc_period.custom_message != '' %>
-      <br><br>
-      <a id="logout_linkddd" class="logout" rel="nofollow" data-method="post" href="/logout">
+      <div style="float:left;"><%= image_tag('uc_big.png', :plugin => :under_construction) %></div>
+      <div style="padding-left: 80px;">
+        <%= l(:label_dear_colleagues) %><br>
+        <%= l(:infromation_technical_operations_emergency_html, :time_end => format_time(@uc_period.end_date+DateTime.now.utc_offset)).html_safe %>
+        <br><br>
+        <%= @uc_period.custom_message if @uc_period.custom_message && @uc_period.custom_message != '' %>
+        <br><br>
+      </div>
+      <a id="logout_link_uc" class="logout btn btn-warning" rel="nofollow" data-method="post" href="/logout">
         <span><%= l(:label_logout) %></span>
       </a>
-    </div>
+    
   </div>
 </div>
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $("#logout_link").click(function() {
+  $("#logout_link_uc").click(function() {
     jQuery.ajax({ type: 'POST',
                 url: '/logout' });
   })

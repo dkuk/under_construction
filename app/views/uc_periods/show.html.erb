@@ -1,10 +1,9 @@
 <h2><%= l(:admin_menu_under_construction) %></h2>
 
-<%= form_for @uc_period do |f| %>
+<%= form_for(@uc_period, :html => {:id => 'uc_period_form'}) do |f| %>
 <% if false %>
 <p>
   <%= label_tag('tech_period', l(:label_tech_period)) %>
-  <%#= label_tag("f_#{field[:field]}_take_new", l(:label_issue_take_new_from_field)) %>
   <%= f.date_select :begin_date %>
   <%= f.time_select :begin_date, :ignore_date => true %>
   <%= f.text_field(:begin_date, :size => 10) %>
@@ -24,6 +23,14 @@
   <tr>
     <td><%= label_tag('end_date', l(:field_tech_end_date)) %></td>
     <td><%= f.date_select :end_date %><%= f.time_select :end_date, :ignore_date => true %></td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;"><%= label_tag('tech_period_head', l(:field_message_head)) %></td>
+    <td>
+      <div id="msg_head" style="border: 1px solid #DDD; background-color: #EEE; padding: 5px; width: 700px;">
+        <%= render :partial => 'msg_head', :locals => {:uc_period => @uc_period} %>
+      </div>
+    </td>
   </tr>  
   <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period', l(:field_custom_message)) %></td>
@@ -44,3 +51,29 @@
 </table>
   <%= f.submit(l(:button_save)) %>
 <% end %>
+
+<script type="text/javascript">
+function upd_header(){
+  // alert('ok!')
+    $.ajax({
+      url: '/uc_periods/update_msg_head',
+      type: 'get',
+      data: $('#uc_period_form').serialize()
+    });
+}
+
+$(document).ready(function(){
+  $('#uc_period_begin_date_1i,#uc_period_begin_date_2i,#uc_period_begin_date_3i,#uc_period_begin_date_4i,#uc_period_begin_date_5i').change(function(){
+    upd_header();
+  });
+
+  $('#uc_period_end_date_1i,#uc_period_end_date_2i,#uc_period_end_date_3i,#uc_period_end_date_4i,#uc_period_end_date_5i').change(function(){
+    upd_header();
+  });
+
+  $('#uc_period_turned_on').change(function(){
+    upd_header();
+  });  
+
+});
+</script>

@@ -9,6 +9,12 @@ class UcPeriodsController < ApplicationController
     render 'show'
   end
 
+  def update_msg_head
+    @uc_period = UcPeriod.new(params[:uc_period])
+    
+    render :partial => 'update_msg_head'
+  end
+
   def edit
     @uc_period = UcPeriod.find(params[:id])
   end
