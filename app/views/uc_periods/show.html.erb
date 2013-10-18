@@ -24,6 +24,7 @@
     <td><%= label_tag('end_date', l(:field_tech_end_date)) %></td>
     <td><%= f.date_select :end_date %><%= f.time_select :end_date, :ignore_date => true %></td>
   </tr>
+  <% if UcPeriod.redmine_has_class?('RsSender') %>
   <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period_head', l(:field_message_head)) %></td>
     <td>
@@ -31,7 +32,8 @@
         <%= render :partial => 'msg_head', :locals => {:uc_period => @uc_period} %>
       </div>
     </td>
-  </tr>  
+  </tr>
+  <% end %>  
   <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period', l(:field_custom_message)) %></td>
     <td><%= f.text_area :custom_message,
@@ -43,11 +45,12 @@
     <td><%= label_tag('turned_on', l(:field_turned_on)) %></td>
     <td><%= f.check_box :turned_on %></td>
   </tr>  
-
-  <tr>
-    <td><%= label_tag('notify', l(:field_notify_about)) %></td>
-    <td><%= check_box_tag(:notify_users, true, false) %></td>
-  </tr>
+  <% if UcPeriod.redmine_has_class?('RsSender') %>
+    <tr>
+      <td><%= label_tag('notify', l(:field_notify_about)) %></td>
+      <td><%= check_box_tag(:notify_users, true, false) %></td>
+    </tr>
+  <% end %>
 </table>
   <%= f.submit(l(:button_save)) %>
 <% end %>
@@ -61,7 +64,7 @@ function upd_header(){
       data: $('#uc_period_form').serialize()
     });
 }
-
+<% if UcPeriod.redmine_has_class?('RsSender') %>
 $(document).ready(function(){
   $('#uc_period_begin_date_1i,#uc_period_begin_date_2i,#uc_period_begin_date_3i,#uc_period_begin_date_4i,#uc_period_begin_date_5i').change(function(){
     upd_header();
@@ -76,4 +79,5 @@ $(document).ready(function(){
   });  
 
 });
+<% end %>
 </script>
