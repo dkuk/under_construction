@@ -1,0 +1,21 @@
+# English strings go here for Rails i18n
+bg:
+  admin_menu_under_construction: "Техническа поддръжка"
+  plugin_test_under_construction: "under_construction"
+  label_tech_period: "Период за техническа поддръжка"
+  field_custom_message: "Съобщение"
+  field_tech_begin_date: "Начало на поддръжката"
+  field_tech_end_date: "Край на поддръжката"
+  field_turned_on: "Включен режим на техническа поддръжка"
+  field_notify_about: "Изпращане на съобщение"
+  field_message_head: "Заглавие на съобщението"
+
+  notice_tech_period_saved: "Период за техническа поддръжка е записан"
+  warning_technical_operations_in_progress: "Техническа поддръжка"
+
+  label_dear_colleagues: "Уважаеми потребители!"
+  infromation_technical_operations_planing: "Redmine е в техническа поддръжка от %{time_start} до %{time_end}. Моля да завършите работата си в Redmine до началото на периода."
+  infromation_technical_operations_ends: "Техническата поддръжка е завършена. Redmine работи нормално."
+  infromation_technical_operations_emergency: "Redmine е в техническа поддръжка, която ще продължи до %{time_end}."
+
+  infromation_technical_operations_emergency_html: "Redmine е в техническа поддръжка, която ще продължи до <strong><nobr>%{time_end}</nobr></strong>"
