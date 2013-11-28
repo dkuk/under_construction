@@ -2,3 +2,20 @@
 en:
   admin_menu_under_construction: "Under Construction"
   plugin_test_under_construction: "under_construction"
+  label_tech_period: "Technical operations period"
+  field_custom_message: "Message"
+  field_tech_begin_date: "Operations start"
+  field_tech_end_date: "Operations end"
+  field_turned_on: "Technical operations mode enabled"
+  field_notify_about: "Send out notification"
+  field_message_head: "Message title"
+
+  notice_tech_period_saved: "Technical operations period saved"
+  warning_technical_operations_in_progress: "Warning technical operations in progress!"
+
+  label_dear_colleagues: "Dear colleagues!"
+  infromation_technical_operations_planing: "Redmine server will be under maintenance from %{time_start} till %{time_end}! Please complete your activities in RM to this period."
+  infromation_technical_operations_ends: "Technical operations completed. Redmine is operating normally"
+  infromation_technical_operations_emergency: "Redmine server is under maintenance till %{time_end}."
+
+  infromation_technical_operations_emergency_html: "Redmine server is under maintenance till <strong><nobr>%{time_end}</nobr></strong>"
