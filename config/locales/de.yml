@@ -1,0 +1,21 @@
+# German strings go here for Rails i18n
+de:
+  admin_menu_under_construction: "Im Bau"
+  plugin_test_under_construction: "Im Bau"
+  label_tech_period: "Technische Wartungsarbeiten"
+  field_custom_message: "Nachricht"
+  field_tech_begin_date: "Start der Wartungsarbeiten"
+  field_tech_end_date: "Ende der Wartungsarbeiten"
+  field_turned_on: "Technische Wartungsarbeiten aktivieren"
+  field_notify_about: "Benachrichtigung versenden"
+  field_message_head: "Nachrichten Überschrift"
+
+  notice_tech_period_saved: "Zeitfenster für Technische Wartungsarbeiten gespeichert"
+  warning_technical_operations_in_progress: "Achtung, technische Wartungsarbeiten werden durchgeführt!"
+
+  label_dear_colleagues: "Liebe Kollegen!"
+  infromation_technical_operations_planing: "Der Redmine Server wird für die Zeit vom %{time_start} bis %{time_end} gewartet! Bitte schließen Sie Ihre Aktivitäten bis zu diesem Zeitfenster ab."
+  infromation_technical_operations_ends: "Technische Wartungsarbeiten wurden abgeschlossen. Redmine arbeitet normal."
+  infromation_technical_operations_emergency: "Der Redmine Server ist unter Wartung bis %{time_end}."
+
+  infromation_technical_operations_emergency_html: "Der Redmine Server ist unter Wartung bis <strong><nobr>%{time_end}</nobr></strong>"
