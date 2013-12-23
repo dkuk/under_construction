@@ -29,7 +29,10 @@ class UcPeriod < ActiveRecord::Base
   def notify_users
     return unless UcPeriod.redmine_has_class?('RsSender')
       
-    User.active.each{|u| u.send_message(txt_to_notify, 'xmpp')} if msg
+    User.active.each{|u| 
+      text_message = txt_to_notify
+      u.send_message(text_message, 'xmpp') if text_message
+    }
   end
 
   def txt_to_notify(add_body=true)
