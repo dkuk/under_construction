@@ -3,6 +3,7 @@ class UcPeriodsController < ApplicationController
   layout 'admin'
 
   before_filter :find_default_period, :only => [:index, :under_construction]
+  before_filter :authorize, :except => [:update_msg_head, :under_construction]
 
   def index
     @uc_period ||= UcPeriod.new
