@@ -14,10 +14,14 @@
         <br>
       </div>
       <% if uc_period.user_id %>
-        <div class="uc_ask_label"><%= l(:label_ask_for) %>:</div>
-        <div class="uc_ask_user">
-          <%= show_user_info(uc_period.user, [:name,:phones,:email]) %>
-        </div>
+        <% if Redmine::Plugin::registered_plugins.include?(:ldap_users_sync) %>
+          <div class="uc_ask_label"><%= l(:label_ask_for) %>:</div>
+          <div class="uc_ask_user">
+            <%= show_user_info(uc_period.user, [:name,:phones,:email]) %>
+          </div>
+        <% else %>
+          <div class="uc_ask_label"><%= l(:label_ask_for) %>: <%= link_to_user(uc_period.user) %></div>
+        <% end %>
       <% end %>
   </div>
   <script>

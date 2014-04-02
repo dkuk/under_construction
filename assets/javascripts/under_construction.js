@@ -43,5 +43,6 @@ function uc_show_warn_if_needed () {
     $('#uc_warn_note').css('top', tm_heigth + 5 + 'px');
     $('#uc_warn_note').css('left', jQuery(window).width() - 5 - uc_warn_width + 'px');
     $('#uc_warn_note').show();
+    $('#uc_warn_note').effect('slide', {direction: 'up'} , 700);
   }
 }
