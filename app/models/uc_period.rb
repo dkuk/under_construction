@@ -1,12 +1,7 @@
 class UcPeriod < ActiveRecord::Base
   unloadable
 
-
-  def self.redmine_has_class?(foreign_class_name)
-    true if Kernel.const_get(foreign_class_name)
-  rescue NameError
-    false
-  end
+  belongs_to :user
 
   def active?(time=nil)
     # get current server time (with timezone)
@@ -27,9 +22,9 @@ class UcPeriod < ActiveRecord::Base
 
 
   def notify_users
-    return unless UcPeriod.redmine_has_class?('RsSender')
-      
-    User.active.each{|u| 
+    return unless Redmine::Plugin::registered_plugins.include?(:redmine_sender)
+
+    User.active.each{|u|
       text_message = txt_to_notify
       u.send_message(text_message, 'xmpp') if text_message
     }
@@ -47,12 +42,12 @@ class UcPeriod < ActiveRecord::Base
     elsif planning?(time)
       msg = l(:label_dear_colleagues)+"\n\n"
       msg << l(:infromation_technical_operations_planing, :time_start => format_time(begin_date-to), :time_end => format_time(end_date-to))+"\n\n"
-      msg << custom_message if add_body && custom_message && custom_message != ''      
+      msg << custom_message if add_body && custom_message && custom_message != ''
     elsif manual_off?(time)
       msg = l(:label_dear_colleagues)+"\n\n"
       msg << l(:infromation_technical_operations_ends)
     end
     msg
   end
-  
+
 end

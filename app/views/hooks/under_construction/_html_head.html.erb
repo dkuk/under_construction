@@ -1,4 +1,26 @@
-<%# if ['uc_periods','admin'].include?(params[:controller]) %>
+<% content_for :header_tags do %>
   <%= stylesheet_link_tag 'under_construction.css', :plugin => :under_construction %>
   <%= javascript_include_tag 'under_construction.js', :plugin => :under_construction %>
-<%# end %>
+<% end %>
+
+<% uc_period = UcPeriod.order('begin_date desc').first %>
+<% if uc_period.notify %>
+  <div id="uc_warn_note" class="I alert alert-warning uc_float_warn">
+    <div class="R H"><a href="#" class="icon close-icon close-grey-form uc_close_warning"></a></div>
+      <h3>&nbsp;</h3>
+      <div style="float:left; padding: 0 3px; overflow: hidden;"><%= image_tag('uc_warn_gtk.png', :plugin => :under_construction) %></div>
+      <div style="padding-left: 45px;">
+        <%= (uc_period.txt_to_notify || uc_period.custom_message).to_s.gsub("\n", '<br>').html_safe %>
+        <br>
+      </div>
+      <% if uc_period.user_id %>
+        <div class="uc_ask_label"><%= l(:label_ask_for) %>:</div>
+        <div class="uc_ask_user">
+          <%= show_user_info(uc_period.user, [:name,:phones,:email]) %>
+        </div>
+      <% end %>
+  </div>
+  <script>
+    var uc_warn_hash = '<%= Digest::MD5.hexdigest((uc_period.txt_to_notify || uc_period.custom_message).to_s) %>';
+  </script>
+<% end %>

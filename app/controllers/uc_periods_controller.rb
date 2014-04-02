@@ -3,7 +3,7 @@ class UcPeriodsController < ApplicationController
   layout 'admin'
 
   before_filter :find_default_period, :only => [:index, :under_construction]
-  before_filter :authorize, :except => [:update_msg_head, :under_construction]
+  before_filter :require_admin, :except => [:update_msg_head, :under_construction]
 
   def index
     @uc_period ||= UcPeriod.new
@@ -12,7 +12,7 @@ class UcPeriodsController < ApplicationController
 
   def update_msg_head
     @uc_period = UcPeriod.new(params[:uc_period])
-    
+
     render :partial => 'update_msg_head'
   end
 
@@ -27,9 +27,9 @@ class UcPeriodsController < ApplicationController
       if @uc_period.save
         @uc_period.notify_users if params[:notify_users]
         flash[:notice] = l(:notice_tech_period_saved)
-        format.html { redirect_to(:action => "index" ) }        
+        format.html { redirect_to(:action => 'index') }
       else
-        format.html { render 'show' }        
+        format.html { render 'show' }
       end
     end
   end
@@ -39,9 +39,9 @@ class UcPeriodsController < ApplicationController
 
     respond_to do |format|
       if @uc_period.update_attributes(params[:uc_period])
-        @uc_period.notify_users if params[:notify_users]
+        @uc_period.notify_users if @uc_period.notify
         flash[:notice] = l(:notice_tech_period_saved)
-        format.html { redirect_to(:action => "index") }
+        format.html { redirect_to(:action => 'index') }
       else
         format.html { render 'show' }
       end
@@ -54,8 +54,12 @@ class UcPeriodsController < ApplicationController
 
   private
 
+  def require_admin
+    render_403 unless User.current.admin?
+  end
+
   def find_default_period
-    @uc_period = UcPeriod.order("begin_date desc").first
+    @uc_period = UcPeriod.order('begin_date desc').first
   end
 
 end
