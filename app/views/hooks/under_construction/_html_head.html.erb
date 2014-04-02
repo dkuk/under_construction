@@ -4,7 +4,7 @@
 <% end %>
 
 <% uc_period = UcPeriod.order('begin_date desc').first %>
-<% if uc_period.notify %>
+<% if uc_period && uc_period.notify %>
   <div id="uc_warn_note" class="I alert alert-warning uc_float_warn">
     <div class="R H"><a href="#" class="icon close-icon close-grey-form uc_close_warning"></a></div>
       <h3>&nbsp;</h3>
