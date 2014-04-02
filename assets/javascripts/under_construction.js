@@ -32,7 +32,7 @@ function uc_upd_header () {
 }
 
 function uc_show_warn_if_needed () {
-  if (uc_warn_hash != undefined && localStorage['uc_warn_hash'] != uc_warn_hash) {
+  if (typeof uc_warn_hash != 'undefined' && localStorage['uc_warn_hash'] != uc_warn_hash) {
       localStorage['uc_warn_hash'] = uc_warn_hash;
       localStorage['uc_warn_state'] = 'open';
   }
