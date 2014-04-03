@@ -38,11 +38,14 @@ function uc_show_warn_if_needed () {
   }
 
   if (localStorage['uc_warn_state'] != 'closed') {
-    var tm_heigth = $('#top-menu').outerHeight();
-    var uc_warn_width = $('#uc_warn_note').outerWidth();
-    $('#uc_warn_note').css('top', tm_heigth + 5 + 'px');
-    $('#uc_warn_note').css('left', jQuery(window).width() - 5 - uc_warn_width + 'px');
-    $('#uc_warn_note').show();
-    $('#uc_warn_note').effect('slide', {direction: 'up'} , 700);
+    var warn_note = $('#uc_warn_note');
+    var uc_warn_width = warn_note.outerWidth();
+    warn_note.css('width', warn_note.width()+'px');
+    warn_note.css('height', warn_note.outerHeight()+'px');
+    warn_note.css('top', 3 + 'px');
+    warn_note.css('left', jQuery(window).width() - 3 - uc_warn_width + 'px');
+    warn_note.find('.uc_warn_wrapper').hide();
+    warn_note.show();
+    warn_note.effect('slide', {direction: 'up'} , 300, function () { $('.uc_warn_wrapper').show();});
   }
 }
