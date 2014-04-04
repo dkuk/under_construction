@@ -41,7 +41,7 @@ function uc_show_warn_if_needed () {
     var warn_note = $('#uc_warn_note');
     var uc_warn_width = warn_note.outerWidth();
     warn_note.css('width', warn_note.width()+'px');
-    warn_note.css('height', warn_note.outerHeight()+'px');
+    warn_note.css('height', warn_note.height()+'px');
     warn_note.css('top', 3 + 'px');
     warn_note.css('left', jQuery(window).width() - 3 - uc_warn_width + 'px');
     warn_note.find('.uc_warn_wrapper').hide();

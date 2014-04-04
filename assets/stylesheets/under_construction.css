@@ -42,6 +42,17 @@
   border: 0;
 }
 
+.uc_close_icon {
+  display: block;
+  margin: 1px 0;
+  overflow: hidden;
+  width: 13px;
+  height: 13px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url(../images/close.png);
+}
+
 .uc_warn_wrapper {
   padding: 0 1px;
   margin: 0;

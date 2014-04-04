@@ -7,7 +7,7 @@
 <% if uc_period && uc_period.notify %>
   <div id="uc_warn_note" class="I alert alert-warning uc_float_warn">
     <div class="uc_warn_wrapper">
-      <div class="uc_close_btn"><a href="#" class="icon close-icon close-grey-form uc_close_warning"></a></div>
+      <div class="uc_close_btn"><a href="#" class="icon uc_close_icon uc_close_warning"></a></div>
       <div class="uc_warn_image"><%= image_tag('exclamation.png', :plugin => :under_construction) %></div>
       <div class="uc_warn_text">
         <%= (uc_period.txt_to_notify || uc_period.custom_message).to_s.gsub("\n", '<br>').html_safe %>
