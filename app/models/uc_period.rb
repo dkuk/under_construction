@@ -43,9 +43,11 @@ class UcPeriod < ActiveRecord::Base
       msg = l(:label_dear_colleagues)+"\n\n"
       msg << l(:infromation_technical_operations_planing, :time_start => format_time(begin_date-to), :time_end => format_time(end_date-to))+"\n\n"
       msg << custom_message if add_body && custom_message && custom_message != ''
-    elsif manual_off?(time)
-      msg = l(:label_dear_colleagues)+"\n\n"
-      msg << l(:infromation_technical_operations_ends)
+    # elsif manual_off?(time)
+    #   msg = l(:label_dear_colleagues)+"\n\n"
+    #   msg << l(:infromation_technical_operations_ends)
+    else
+      msg = custom_message if add_body
     end
     msg
   end

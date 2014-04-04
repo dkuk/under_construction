@@ -46,6 +46,6 @@ function uc_show_warn_if_needed () {
     warn_note.css('left', jQuery(window).width() - 3 - uc_warn_width + 'px');
     warn_note.find('.uc_warn_wrapper').hide();
     warn_note.show();
-    warn_note.effect('slide', {direction: 'up'} , 300, function () { $('.uc_warn_wrapper').show();});
+    warn_note.effect('slide', {direction: 'up'} , 300, function () { $('.uc_warn_wrapper').show(); $('#uc_warn_note').css('width', 'auto').css('height', 'auto')});
   }
 }

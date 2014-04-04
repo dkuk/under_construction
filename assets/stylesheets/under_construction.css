@@ -9,7 +9,6 @@
   z-index: 1000;
   border-radius: 4px;
   /*border: 1px solid #999;*/
-  padding: 8px;
   background-color: #FFFAE8;
   color: #333;
   max-width: 620px;
@@ -54,7 +53,8 @@
 }
 
 .uc_warn_wrapper {
-  padding: 0 1px;
+  padding: 8px;
+  overflow: hidden;
   margin: 0;
   border: 0;
 }
@@ -85,4 +85,5 @@
   border-top: 2px groove rgba(255, 255, 255, 0.55);
   margin: 0 -9px;
   margin-top: 3px;
+  padding: 6px 6px 0 6px;
 }
