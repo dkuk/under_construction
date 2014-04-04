@@ -21,9 +21,15 @@
         <%= @uc_period.txt_to_notify.to_s.gsub("\n", '<br>').html_safe %>
         <br><br>
       </div>
-      <a id="logout_link_uc" class="logout btn btn-warning" rel="nofollow" data-method="post" href="/logout">
-        <span><%= l(:label_logout) %></span>
-      </a>
+      <% if User.current.anonymous? %>
+        <a id="login_link_uc" class="logout btn btn-warning" href="/login">
+          <span><%= l(:label_login_to_rm) %></span>
+        </a>
+      <% else %>
+        <a id="logout_link_uc" class="logout btn btn-warning" rel="nofollow" data-method="post" href="/logout">
+          <span><%= l(:label_logout) %></span>
+        </a>
+      <% end %>
   </div>
 </div>
 

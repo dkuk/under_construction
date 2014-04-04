@@ -11,6 +11,7 @@ en:
   field_message_head: "Message title"
   field_responsible: "Responsible"
   label_ask_for: "You may ask for:"
+  label_login_to_rm: "Login"
 
   notice_tech_period_saved: "Technical operations period saved"
   warning_technical_operations_in_progress: "Warning technical operations in progress!"

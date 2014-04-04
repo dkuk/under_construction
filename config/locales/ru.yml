@@ -10,6 +10,7 @@ ru:
   field_message_head: "Заголовок сообщения"
   field_responsible: "Ответственный"
   label_ask_for: "По возникшим вопросам обращаться к"
+  label_login_to_rm: "Вход"
 
   notice_tech_period_saved: "Период тех. работ сохранен"
   warning_technical_operations_in_progress: "Технические работы!"
