@@ -18,7 +18,8 @@
       <h2><%= l(:warning_technical_operations_in_progress) %></h2>
       <div style="float:left;"><%= image_tag('uc_big.png', :plugin => :under_construction) %></div>
       <div style="padding-left: 80px;">
-        <%= @uc_period.txt_to_notify.to_s.gsub("\n", '<br>').html_safe %>
+        <%#= @uc_period.txt_to_notify.to_s.gsub("\n", '<br>').html_safe %>
+        <%= textilizable(@uc_period.txt_to_notify, :object => @uc_period) %>
         <br><br>
       </div>
       <% if User.current.anonymous? %>

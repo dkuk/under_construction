@@ -1,0 +1,7 @@
+<fieldset class="preview"><legend><%= l(:field_preview) %></legend>
+<% if @notes && @uc_period %>
+  <%= textilizable @notes, :object => @uc_period %>
+<% else %>
+  <%= l(:error_no_object_to_render) %>
+<% end %>
+</fieldset>

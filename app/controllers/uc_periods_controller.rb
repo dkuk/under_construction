@@ -52,6 +52,12 @@ class UcPeriodsController < ApplicationController
     render 'under_construction', :layout => false
   end
 
+  def preview
+    @uc_period = UcPeriod.new(params[:uc_period])
+    @notes = (@uc_period.txt_to_notify || @uc_period.custom_message).to_s
+    render 'preview.html', layout: false
+  end
+
   private
 
   def require_admin

@@ -10,7 +10,8 @@
       <div class="uc_close_btn"><a href="#" class="icon uc_close_icon uc_close_warning"></a></div>
       <div class="uc_warn_image"><%= image_tag('exclamation.png', :plugin => :under_construction) %></div>
       <div class="uc_warn_text">
-        <%= (uc_period.txt_to_notify || uc_period.custom_message).to_s.gsub("\n", '<br>').html_safe %>
+        <%= textilizable((uc_period.txt_to_notify || uc_period.custom_message).to_s, :object => uc_period) %>
+        <%#= (uc_period.txt_to_notify || uc_period.custom_message).to_s.gsub("\n", '<br>').html_safe %>
       </div>
       <% if uc_period.user_id %>
         <% if Redmine::Plugin::registered_plugins.include?(:ldap_users_sync) %>

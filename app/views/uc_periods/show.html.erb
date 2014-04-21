@@ -25,7 +25,13 @@
     <td><%= f.text_area :custom_message,
                         :cols => 60,
                         :rows => 5,
-                        :class => 'wiki-edit' %></td>
+                        :class => 'wiki-edit' %>
+        <%= wikitoolbar_for 'uc_period_custom_message' %>
+        <%= link_to( content_tag(:span, l(:label_preview)),
+                     '#',
+                     :class => 'icon uc_preview in_link no_line',
+                     :onclick => 'submitPreview("/uc_periods/'+@uc_period.id.to_s+'/preview/", "uc_period_form", "uc_period_form_preview"); return false;' ) %>
+    </td>
   </tr>
   <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period_user_id', l(:field_responsible)) %></td>
@@ -38,6 +44,10 @@
   <tr>
     <td><%= label_tag('uc_period_notify', l(:field_notify_about)) %></td>
     <td><%= f.check_box :notify %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><div id="uc_period_form_preview"></div></td>
   </tr>
 </table>
   <%= f.submit(l(:button_save)) %>
