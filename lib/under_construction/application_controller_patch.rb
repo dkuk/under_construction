@@ -35,7 +35,7 @@ module UnderConstruction
               unsupported_browser = true
               break
             when '='
-              if user_browser.version == r.version
+              if user_browser.version.to_f == r.version.to_f
                 unsupported_browser = true
                 break
               end
