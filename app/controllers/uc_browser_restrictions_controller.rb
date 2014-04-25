@@ -16,11 +16,19 @@ class UcBrowserRestrictionsController < ApplicationController
 
   def create
     @rule = UcBrowserRestriction.new(params[:rule])
-    @rule.save
+    if @rule.save
+      render 'create'
+    else
+      render 'errors'
+    end
   end
 
   def update
-    @js_err = l(:error_rule_not_saved) unless @rule.update_attributes(params[:rule])
+    if @rule.update_attributes(params[:rule])
+      render 'update'
+    else
+      render 'errors'
+    end
   end
 
   def destroy
