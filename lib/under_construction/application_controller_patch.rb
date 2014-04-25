@@ -28,7 +28,7 @@ module UnderConstruction
       def check_browser_restrictions
         user_browser = Browser.new(ua: request.env['HTTP_USER_AGENT'], accept_language: 'en-us')
         unsupported_browser = false
-        if Setting.plugin_under_construction.is_a?(Array) && Setting.plugin_under_construction['enable_restrictions']
+        if Setting.plugin_under_construction.is_a?(Hash) && Setting.plugin_under_construction['enable_restrictions']
           UcBrowserRestriction.where(name: user_browser.id.to_s).each do |r|
             case r.condition
             when ''
