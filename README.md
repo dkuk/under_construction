@@ -19,11 +19,19 @@ Clone plugin in that folder.
 
 		git clone https://github.com/dkuk/under_construction.git
 
+Clone a_common_libs plugin in that folder.
+
+		git clone https://github.com/dkuk/a_common_libs.git
+
+Run
+		bundle install.
+
 Perform plugin migrations (make sure performing command in the root installation folder of «Redmine»):
 
 		rake redmine:plugins:migrate NAME=under_construction
 
 Restart your web-server.
+Turn-on options for bootstrap components and Select2 componetns at a_common_libs plugin options
 
 #### Supported Redmine, Ruby and Rails versions.
 
@@ -31,6 +39,7 @@ Plugin aims to support and is tested under the following Redmine implementations
 * Redmine 2.3.1
 * Redmine 2.3.2
 * Redmine 2.3.3
+* Redmine 2.5.1
 
 Plugin aims to support and is tested under the following Ruby implementations:
 * Ruby 1.9.2
