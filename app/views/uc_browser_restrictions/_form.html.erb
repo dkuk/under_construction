@@ -1,0 +1,27 @@
+<% browsers = [] %>
+<%= form_for @rule, remote: true, html: {id: 'uc_rule_form'} do |f| %>
+<% Browser::NAMES.each_pair{|k,v| browsers << [v,k]} %>
+  <div class="modal-body H">
+    <div class="uc_field H">
+      <div class="uc-fld-name L"><%= l(:field_browser) %></div>
+      <div class="L"><%= select_tag('rule[name]', options_for_select(browsers, @rule.name), {} ) %></div>
+    </div>
+    <div class="uc_field H">
+      <div class="uc-fld-name L"><%= l(:field_condition) %></div>
+      <div class="L"><%= select_tag('rule[condition]', options_for_select(UcBrowserRestriction::BR_CONDITIONS.each{|c| [c,c]}, @rule.condition), {} ) %></div>
+    </div>
+    <div id="uc_brw_version" class="uc_field H">
+      <div class="uc-fld-name L"><%= l(:field_browser_version) %></div>
+      <div class="L"><%= text_field_tag('rule[version]', @rule.version) %></div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <%= f.submit( l(:button_save), style: 'margin: 0px;') %>
+    <button class="" data-dismiss="modal" aria-hidden="true" style="vertical-align: middle;"><%= l(:button_close_window) %></button>
+  </div>
+<% end %>
+
+<script>
+  $('#rule_condition').trigger('change');
+</script>

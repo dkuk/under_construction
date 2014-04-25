@@ -13,7 +13,9 @@ Redmine::Plugin.register :under_construction do
 
 
   menu :admin_menu, :admin_menu_under_construction, { :controller => 'uc_periods', :action => 'index'}, :caption => :admin_menu_under_construction
-      
+  menu :admin_menu, :admin_menu_browsers_restricitons, '/settings/plugin/under_construction', :caption => :admin_menu_browsers_restricitons
+
+  settings  partial: 'settings/uc_settings'
 end
 
 require 'under_construction/view_hooks'

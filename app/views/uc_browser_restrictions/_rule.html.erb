@@ -1,0 +1,15 @@
+  <div class="uc-rule-body H">
+    <div class="R">
+    <%= link_to( content_tag(:span, l(:button_edit)),
+                 {controller: 'uc_browser_restrictions', action: 'edit', id: rule.id},
+                 class: 'icon icon-edit in_link uc_cond_editor') %>
+    <%= link_to( content_tag(:span, l(:button_delete)),
+                 {controller: 'uc_browser_restrictions', action: 'destroy', id: rule.id},
+                 class: 'icon icon-del in_link',
+                 remote: true,
+                 method: :delete ) %>
+    </div>
+    <div class="L uc_br_name H"><%= Browser::NAMES[rule.name.to_sym] %></div>
+    <div class="L uc_br_cond H"><%= rule.condition == '' ? l(:label_any_version) : rule.condition %></div>
+    <div class="L H"><%= rule.version %></div>
+  </div>

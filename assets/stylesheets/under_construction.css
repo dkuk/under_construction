@@ -2,6 +2,17 @@
   background-image: url(../images/under_construction.png);
 }
 
+.admin-menu-browsers-restricitons {
+  background-image: url(../images/globe.png);
+}
+
+.uc-add-panel {
+  margin: 5px 0;
+}
+
+.uc-fld-name {
+  min-width: 120px;
+}
 .uc_preview_area {
   box-sizing: border-box;
   -moz-box-sizing: border-box;

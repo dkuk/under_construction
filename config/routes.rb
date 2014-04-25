@@ -9,4 +9,10 @@ RedmineApp::Application.routes.draw do
     end
   end
 
+  resources :uc_browser_restrictions do
+    collection do
+      get 'wrong_browser'
+    end
+  end
+
 end

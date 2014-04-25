@@ -1,0 +1,3 @@
+$('#rule-<%= @rule.id %>').html('<%= escape_javascript(render partial: 'uc_browser_restrictions/rule', locals: {rule: @rule}) %>')
+$('#uc_condition_window').modal('hide');
+toggle_not_specified();

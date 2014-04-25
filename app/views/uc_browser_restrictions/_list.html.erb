@@ -1,0 +1,16 @@
+<fieldset id="uc_browsers_conditions"><legend><%= l(:label_browsers_conditions) %></legend>
+  <% UcBrowserRestriction.order(:name).each do |rule| %>
+    <div id="rule-<%= rule.id %>" class="uc-rule H">
+      <%= render partial: 'uc_browser_restrictions/rule', locals: {rule: rule} %>
+    </div>
+  <% end %>
+  <div class="uc-not-specified I"><%= l(:label_not_specified) %></div>
+</fieldset>
+
+<div class="H uc-add-panel">
+  <%= link_to( content_tag(:span, l(:button_add_rule)),
+               {controller: 'uc_browser_restrictions', action: 'new'},
+               class: 'icon icon-add in_link uc_cond_editor',
+               remote: true ) %>
+</div>
+

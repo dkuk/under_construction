@@ -1,6 +1,7 @@
 # English strings go here for Rails i18n
 en:
   admin_menu_under_construction: "Under Construction"
+  admin_menu_browsers_restricitons: "Browsers restricitons"
   plugin_test_under_construction: "under_construction"
   label_tech_period: "Technical operations period"
   field_custom_message: "Message"
@@ -23,3 +24,18 @@ en:
   infromation_technical_operations_emergency: "Redmine server is under maintenance till %{time_end}."
 
   infromation_technical_operations_emergency_html: "Redmine server is under maintenance till <strong><nobr>%{time_end}</nobr></strong>"
+
+  settings_text_message: "Browser warning message"
+  settings_responsible_users: "Responsible"
+  settings_enable_restrictions: "Enable browsers restricions"
+  button_add_rule: "Add rule"
+  field_browser_version: "Browser version"
+  label_browsers_conditions: "Browsers restricitons conditions"
+  label_not_specified: "Not specified"
+  field_browser: "Browser"
+  field_condition: "Condition"
+  warning_unsupported_browser_version: "You are using unsupported browser version"
+  label_inform_responsible: "Please, call for responsible user"
+  label_in_case_of_questions_call_for: "In case of questions call for"
+  error_cant_store_rule_without_version_if_condition: "The rule can't be stored if no version is pointed while condition is present"
+  label_any_version: "Any version"

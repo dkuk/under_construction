@@ -1,0 +1,95 @@
+<%# Rails.logger.debug "\n\n ~~~~~~~~~~~~~~~~@settings=#{@settings.inspect}" %>
+<% settings  = @settings.is_a?(Hash) ? @settings : {} %>
+<% enable_restrictions = settings['enable_restrictions'] %>
+<% text_message = settings['text_message'] || '' %>
+<% responsible_ids = settings['responsible_ids'] || [] %>
+
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td>
+    <td><%= check_box_tag 'settings[enable_restrictions]', true, enable_restrictions %> &mdash; <%= l(:settings_enable_restrictions) %></td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;"><%= l(:settings_responsible_users) %></td>
+    <td><%= select_tag('settings[responsible_ids]', options_for_select(User.active.sort_by(&:name).map{|u| [u.name, u.id]}, responsible_ids.map(&:to_i)), multiple: true, class: 'select2') %></td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;"><%= l(:settings_text_message) %></td>
+    <td><%= text_area_tag 'settings[text_message]', text_message,
+                          {:cols => 60,
+                          :rows => 5,
+                          :class => 'wiki-edit'} %>
+        <%= wikitoolbar_for 'settings_text_message' %>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <%= render partial: 'uc_browser_restrictions/list' %>
+    </td>
+  </tr>
+</table>
+
+<div id="uc_condition_window" class="modal I fade" role="dialog" aria-hidden="true" data-width="400px" data-height="50%" style="z-index: 1061;"></div>
+
+<style type="text/css">
+
+.uc-rule {
+  border-top: 1px dotted #ccc;
+  padding: 5px 0;
+}
+
+.uc-rule:first-of-type {
+  border-top: 0px;
+}
+
+.uc_br_name {
+  min-width: 130px;
+}
+
+.uc_br_cond {
+  min-width: 20px;
+}
+
+#uc_period_form_preview:empty {
+  display: none;
+}
+
+</style>
+
+<script>
+  $(document).ready(function() {
+    $('#uc_condition_window').prependTo(document.body);
+    toggle_not_specified();
+
+    $(document.body).on('click', '.uc_cond_editor', function () {
+        $('#uc_condition_window').html('<div class="loader form_loader"></div>');
+        $('#uc_condition_window').modal('show');
+        $('#uc_condition_window').load(this.href, function () {
+            resize_bs_modal($('#uc_condition_window'));
+        });
+        return false;
+    });
+
+    $(document.body).on('change', '#rule_condition', function () {
+      var val = $(this).val();
+      if(typeof val == 'undefined' || val == '') {
+        $('#rule_version').val('');
+        $('#uc_brw_version').hide();
+      }
+      else {
+        $('#uc_brw_version').show();
+      }
+    });
+
+  });
+
+  function toggle_not_specified () {
+    if($('.uc-rule').length > 0) {
+      $('.uc-not-specified').hide();
+    }
+    else {
+      $('.uc-not-specified').show();
+    }
+  }
+</script>

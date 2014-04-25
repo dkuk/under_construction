@@ -1,6 +1,7 @@
 # English strings go here for Rails i18n
 ru:
   admin_menu_under_construction: "Тех. работы"
+  admin_menu_browsers_restricitons: "Запрещенные браузеры"
   label_tech_period: "Период тех. работ"
   field_custom_message: "Сообщение"
   field_tech_begin_date: "Начало работ"
@@ -24,5 +25,17 @@ ru:
 
   infromation_technical_operations_emergency_html: "На сервере Redmine проводятся технические работы, которые продлятся по <strong><nobr>%{time_end}</nobr></strong>"
 
-
-
+  settings_text_message: "Текст сообщения"
+  settings_responsible_users: "Ответственные"
+  settings_enable_restrictions: "Включить ограничения для браузеров"
+  button_add_rule: "Добавить правило"
+  field_browser_version: "Версия браузера"
+  label_browsers_conditions: "Условия ограничений для версий браузеров"
+  label_not_specified: "Не заданы"
+  field_browser: "Браузер"
+  field_condition: "Условие"
+  warning_unsupported_browser_version: "Вы используете не поддерживаемую версию браузера"
+  label_inform_responsible: "Обратитесь к ответсвенному сотруднику"
+  label_in_case_of_questions_call_for: "В случае вопросов можно обратиться к"
+  error_cant_store_rule_without_version_if_condition: "Нельзя сохранить правило без указания версии, если задано условие"
+  label_any_version: "Любая версия"
