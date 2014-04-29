@@ -6,16 +6,18 @@
 
 <table width="100%">
   <tr>
-    <td>&nbsp;</td>
     <td><%= check_box_tag 'settings[enable_restrictions]', true, enable_restrictions %> &mdash; <%= l(:settings_enable_restrictions) %></td>
   </tr>
   <tr>
-    <td style="vertical-align: top;"><%= l(:settings_responsible_users) %></td>
-    <td><%= select_tag('settings[responsible_ids]', options_for_select(User.active.sort_by(&:name).map{|u| [u.name, u.id]}, responsible_ids.map(&:to_i)), multiple: true, class: 'select2') %></td>
+    <td>
+      <%= l(:settings_responsible_users) %>:<br>
+      <%= select_tag('settings[responsible_ids]', options_for_select(User.active.sort_by(&:name).map{|u| [u.name, u.id]}, responsible_ids.map(&:to_i)), multiple: true, class: 'uc_select_users', style: 'width: 90%;') %>
+    </td>
   </tr>
   <tr>
-    <td style="vertical-align: top;"><%= l(:settings_text_message) %></td>
-    <td><%= text_area_tag 'settings[text_message]', text_message,
+    <td>
+      <%= l(:settings_text_message) %>:<br>
+      <%= text_area_tag 'settings[text_message]', text_message,
                           {:cols => 60,
                           :rows => 5,
                           :class => 'wiki-edit'} %>
@@ -23,7 +25,6 @@
     </td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
     <td>
       <%= render partial: 'uc_browser_restrictions/list' %>
     </td>
@@ -59,6 +60,7 @@
 
 <script>
   $(document).ready(function() {
+    $('.uc_select_users').select2({width: '100%'})
     $('#uc_condition_window').prependTo(document.body);
     toggle_not_specified();
 

@@ -30,7 +30,7 @@ en:
   settings_enable_restrictions: "Enable browsers restricions"
   button_add_rule: "Add rule"
   field_browser_version: "Browser version"
-  label_browsers_conditions: "Browsers restricitons conditions"
+  label_browsers_conditions: "Disable Redmine for next browsers"
   label_not_specified: "Not specified"
   field_browser: "Browser"
   field_condition: "Condition"

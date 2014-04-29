@@ -30,7 +30,7 @@ ru:
   settings_enable_restrictions: "Включить ограничения для браузеров"
   button_add_rule: "Добавить правило"
   field_browser_version: "Версия браузера"
-  label_browsers_conditions: "Условия ограничений для версий браузеров"
+  label_browsers_conditions: "Отключить поддержку Redmine для следующих версий браузеров"
   label_not_specified: "Не заданы"
   field_browser: "Браузер"
   field_condition: "Условие"
