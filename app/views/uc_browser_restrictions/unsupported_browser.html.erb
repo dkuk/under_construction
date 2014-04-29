@@ -29,10 +29,13 @@ img.gravatar {
 .btn {
   height: auto;
 }
+.us_ask_user {
+  margin-top: 15px;
+}
 </style>
 
 <body>
-<div style="width: 100%; top:30%; position: fixed; ">
+<div id="brw_restriction_warn" style="width: 100%; top:0; position: fixed; ">
   <div style="margin: 0 50%; min-width: 750px;">
     <div class="alert alert-warning" style="margin: 0 -50%; width: 100%;">
       <h2><%= l(:warning_unsupported_browser_version) %></h2>
@@ -55,6 +58,21 @@ img.gravatar {
       </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    uc_center_warn();
+  });
+
+  function uc_center_warn () {
+    var warn_height = $('#brw_restriction_warn').outerHeight();
+    var w_height = $(window).height();
+    var top = 0
+    if(w_height > warn_height){
+      top = (w_height-warn_height)/2;
+    }
+    $('#brw_restriction_warn').css('top', top.toString()+'px');
+  }
+</script>
 
 </body>
 </html>

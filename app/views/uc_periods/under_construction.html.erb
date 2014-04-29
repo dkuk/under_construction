@@ -30,7 +30,7 @@ img.gravatar {
 
 </style>
 <body>
-<div style="width: 100%; top:30%; position: fixed; ">
+<div id="brw_restriction_warn" style="width: 100%; top:0; position: fixed;">
   <div style="margin: 0 50%; min-width: 700px;">
     <div class="alert alert-warning" style="margin: 0 -50%; width: 100%;">
       <h2><%= l(:warning_technical_operations_in_progress) %></h2>
@@ -65,11 +65,23 @@ img.gravatar {
 
 <script type="text/javascript">
 $(document).ready(function () {
+  uc_center_warn();
+
   $("#logout_link_uc").click(function () {
     $.ajax({ type: 'POST',
              url: '/logout' });
   })
 });
+
+function uc_center_warn () {
+  var warn_height = $('#brw_restriction_warn').outerHeight();
+  var w_height = $(window).height();
+  var top = 0
+  if(w_height > warn_height){
+    top = (w_height-warn_height)/2;
+  }
+  $('#brw_restriction_warn').css('top', top.toString()+'px');
+}
 </script>
 </body>
 </html>
