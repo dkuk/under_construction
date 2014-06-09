@@ -39,3 +39,5 @@ en:
   label_in_case_of_questions_call_for: "In case of questions call for"
   error_cant_store_rule_without_version_if_condition: "The rule can't be stored if no version is pointed while condition is present"
   label_any_version: "Any version"
+
+  label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"

@@ -39,3 +39,5 @@ ru:
   label_in_case_of_questions_call_for: "В случае вопросов можно обратиться к"
   error_cant_store_rule_without_version_if_condition: "Нельзя сохранить правило без указания версии, если задано условие"
   label_any_version: "Любая версия"
+
+  label_rmplus_logo: "Данный плагин разработан командой «RM+». Вы всегда можете найти другие наши плагины на сайте"
