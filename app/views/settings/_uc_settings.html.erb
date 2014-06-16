@@ -4,10 +4,6 @@
 <% text_message = settings['text_message'] || '' %>
 <% responsible_ids = settings['responsible_ids'] || [] %>
 
-<%= content_for :header_tags do %>
-  <%= stylesheet_link_tag 'rmplus-logo', :plugin => 'under_constraction', :media => 'screen' %>
-<% end %>
-
 <table width="100%">
   <tr>
     <td><%= check_box_tag 'settings[enable_restrictions]', true, enable_restrictions %> &mdash; <%= l(:settings_enable_restrictions) %></td>
@@ -35,21 +31,7 @@
   </tr>
 </table>
 
-<div id="rmplus-logo">
-  <div>
-  <%= image_tag 'logo.png', :plugin => :single_auth, alt: l(:label_rmplus_logo), title: l(:label_rmplus_logo), width: 104, height: 39 %>
-  <span><%= l(:label_rmplus_logo) %>&nbsp<a href="http://rmplus.pro">http://rmplus.pro</a>.</span>
-  </div>
-</div>
-<script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
-  var logo = $('#rmplus-logo').clone();
-  $('#rmplus-logo').remove();
-  $('div#settings').append(logo);
-});
-//]]>
-</script>
+<%= render :file => File.join(File.dirname(__FILE__), "_rmplus_logo.html.erb") %>
 
 <div id="uc_condition_window" class="modal I fade" role="dialog" aria-hidden="true" data-width="400px" data-height="50%" style="z-index: 1061;"></div>
 
