@@ -41,3 +41,5 @@ en:
   label_any_version: "Any version"
 
   label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"
+
+  settings_controller_restriction: "Controller/action restrictions"

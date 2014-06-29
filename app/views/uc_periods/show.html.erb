@@ -1,3 +1,11 @@
+<script type="text/javascript">
+//<![CDATA[
+  $(document).ready(function(){
+
+  });
+//]]>
+</script>
+
 <h2><%= l(:admin_menu_under_construction) %></h2>
 
 <%= form_for(@uc_period, :html => {:id => 'uc_period_form'}) do |f| %>
@@ -33,14 +41,19 @@
                      :onclick => 'submitPreview("/uc_periods/'+@uc_period.id.to_s+'/preview/", "uc_period_form", "uc_period_form_preview"); return false;' ) %>
     </td>
   </tr>
-  <tr>
-    <td style="vertical-align: top;">
-      <%= label_tag('controller', l(:settings_controller_restriction)) %>
-    </td>
-    <td>
-      
-    </td>
-  </tr>
+  <% @uc_period.controller_restrictions.each do |controller| %>
+    <%= fields_for "controller_restrictions[#{controller.id}]", controller do |cr_form| %>
+      <tr>
+        <td>
+          <%= label_tag("controller_restrictions[#{controller.id}]", l(:settings_controller_restriction)) %>
+        </td>
+        <td>
+          <%= cr_form.select :name, options_for_select(@controllers_list), {}, {class: 'select2', data: {select2_width: '195px'}, style: 'margin-right: 10px;'} %>
+          <%= select_tag "uc_period[controller_restrictions[#{controller.id}]]", [], {class: 'select2', data: {select2_width: '195px'}} %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
   <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period_user_id', l(:field_responsible)) %></td>
     <td><%= f.select :user_id, options_for_select(User.active.sort_by(&:name).map{|u| [u.name, u.id]}, @uc_period.user_id), {}, class: 'select2' %></td>

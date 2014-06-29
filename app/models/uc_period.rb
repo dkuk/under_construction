@@ -4,6 +4,9 @@ class UcPeriod < ActiveRecord::Base
   belongs_to :user
   has_many :controller_restrictions, :dependent => :destroy
 
+  attr_accessible :controller_restrictions_attributes
+  accepts_nested_attributes_for :controller_restrictions
+
   def active?(time=nil)
     # get current server time (with timezone)
     # setuped time in DB saved as UTC +00. So compare as current server time without timezone

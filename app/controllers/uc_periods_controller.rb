@@ -5,14 +5,34 @@ class UcPeriodsController < ApplicationController
   before_filter :find_default_period, :only => [:index, :under_construction]
   before_filter :require_admin, :except => [:update_msg_head, :under_construction]
 
+  $ROUTES_LIST = []
+
+  def self.get_routes_list
+    if not $ROUTES_LIST.any?
+      Rails.application.reload_routes!
+      $ROUTES_LIST = Rails.application.routes.routes.group_by{|route| route.defaults[:controller]}.collect do |controller, values|
+        actions = []
+        values.each do |v|
+          actions << v.defaults[:action]
+        end
+        actions = actions.reject{|action| action.nil? || action.empty?}.uniq
+        {controller: controller.to_s, actions: actions}
+      end
+    end
+    $ROUTES_LIST
+  end
+
   def index
     @uc_period ||= UcPeriod.new
+
+    @routes_list = UcPeriodsController.get_routes_list
+    @controllers_list = @routes_list.map{|route| route[:controller]}.sort
+
     render 'show'
   end
 
   def update_msg_head
     @uc_period = UcPeriod.new(params[:uc_period])
-    @routes_list = get_routes_list
     render :partial => 'update_msg_head'
   end
 
@@ -66,21 +86,6 @@ class UcPeriodsController < ApplicationController
 
   def find_default_period
     @uc_period = UcPeriod.order('begin_date desc').first
-  end
-
-  def get_routes_list
-    if @@ROUTES_LIST.empty?          
-      Rails.application.reload_routes!
-      @@ROUTES_LIST = Rails.application.routes.routes.group_by{|route| route.defaults[:controller]}.collect do |controller, values|
-        actions = []
-        values.each do |v|
-          actions << v.defaults[:action]
-        end
-        actions = actions.reject{|action| action.nil?}.uniq
-        {controller: controller.to_s, actions: actions}            
-      end    
-      @@ROUTES_LIST
-    end
   end
 
 end
