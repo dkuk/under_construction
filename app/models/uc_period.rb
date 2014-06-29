@@ -2,6 +2,7 @@ class UcPeriod < ActiveRecord::Base
   unloadable
 
   belongs_to :user
+  has_many :controller_restrictions, :dependent => :destroy
 
   def active?(time=nil)
     # get current server time (with timezone)

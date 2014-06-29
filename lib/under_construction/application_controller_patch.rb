@@ -13,13 +13,25 @@ module UnderConstruction
     module ClassMethods
     end
 
-    module InstanceMethods
-
-      def check_under_construction
-        return true if User.current.admin? || params[:controller] == 'account'
+    module InstanceMethods    
+      def check_under_construction        
+        #return true if User.current.admin? || params[:controller] == 'account'
         @uc_period = UcPeriod.order('begin_date desc').first
-
+        is_under_construction = false
         if @uc_period && @uc_period.active?
+          if @uc_period.controller_restrictions.any?
+            is_under_construction = ControllerRestriction.joins(:action_restrictions)
+                                      .where("#{ControllerRestriction.table_name}.uc_period_id = :uc_period_id AND 
+                                              (#{ControllerRestriction.table_name}.name = 'all' OR 
+                                               #{ControllerRestriction.table_name}.name = :controller_name AND
+                                               #{ActionRestriction.table_name}.name IN ('all', :action_name))",
+                                      {:uc_period_id => @uc_period.id, :controller_name => controller_name, :action_name => action_name})
+                                      .exists?
+          else
+            is_under_construction = true
+          end
+        end
+        if is_under_construction
           @users = [@uc_period.user]
           render 'uc_periods/under_construction', :layout => false
         end
@@ -63,7 +75,6 @@ module UnderConstruction
           render 'uc_browser_restrictions/unsupported_browser', :layout => false
         end
       end
-
     end
 
   end

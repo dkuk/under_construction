@@ -34,6 +34,14 @@
     </td>
   </tr>
   <tr>
+    <td style="vertical-align: top;">
+      <%= label_tag('controller', l(:settings_controller_restriction)) %>
+    </td>
+    <td>
+      
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period_user_id', l(:field_responsible)) %></td>
     <td><%= f.select :user_id, options_for_select(User.active.sort_by(&:name).map{|u| [u.name, u.id]}, @uc_period.user_id), {}, class: 'select2' %></td>
   </tr>

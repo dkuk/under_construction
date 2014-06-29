@@ -12,7 +12,7 @@ class UcPeriodsController < ApplicationController
 
   def update_msg_head
     @uc_period = UcPeriod.new(params[:uc_period])
-
+    @routes_list = get_routes_list
     render :partial => 'update_msg_head'
   end
 
@@ -66,6 +66,21 @@ class UcPeriodsController < ApplicationController
 
   def find_default_period
     @uc_period = UcPeriod.order('begin_date desc').first
+  end
+
+  def get_routes_list
+    if @@ROUTES_LIST.empty?          
+      Rails.application.reload_routes!
+      @@ROUTES_LIST = Rails.application.routes.routes.group_by{|route| route.defaults[:controller]}.collect do |controller, values|
+        actions = []
+        values.each do |v|
+          actions << v.defaults[:action]
+        end
+        actions = actions.reject{|action| action.nil?}.uniq
+        {controller: controller.to_s, actions: actions}            
+      end    
+      @@ROUTES_LIST
+    end
   end
 
 end
