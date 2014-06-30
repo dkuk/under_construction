@@ -112,5 +112,12 @@
 }
 
 .controller-margin {
+  float: left;
   margin-right: 10px;
+}
+a.add_controller {
+  display: block;
+  float: left;
+  padding: 0 4px;
+  margin-top: 5px;
 }
