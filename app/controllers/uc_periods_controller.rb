@@ -2,7 +2,6 @@ class UcPeriodsController < ApplicationController
 
   layout 'admin'
 
-  before_filter :find_default_period, :only => [:index, :under_construction]
   before_filter :require_admin, :except => [:update_msg_head, :under_construction]
 
   $ROUTES_LIST = []
@@ -23,8 +22,12 @@ class UcPeriodsController < ApplicationController
   end
 
   def index
-    @uc_period ||= UcPeriod.new
-    #@uc_period_controllers ||= @uc_period.controller_restrictions.build
+    @uc_period = find_default_period
+    if @uc_period.nil?
+      @uc_period = UcPeriod.new
+      @uc_period.controller_restrictions.build
+      @uc_period.controller_restrictions.each{|cr| cr.action_restrictions.build}
+    end
     @routes_list = UcPeriodsController.get_routes_list
     @controllers_list ||= @routes_list.map{|route| route[:controller]}.sort
 
@@ -70,6 +73,7 @@ class UcPeriodsController < ApplicationController
   end
 
   def under_construction
+    @uc_period = find_default_period
     render 'under_construction', :layout => false
   end
 
@@ -80,13 +84,12 @@ class UcPeriodsController < ApplicationController
   end
 
   private
+    def find_default_period
+      @uc_period = UcPeriod.includes(controller_restrictions: {:action_restrictions})order('begin_date desc').first
+    end
 
-  def require_admin
-    render_403 unless User.current.admin?
-  end
-
-  def find_default_period
-    @uc_period = UcPeriod.order('begin_date desc').first
-  end
+    def require_admin
+      render_403 unless User.current.admin?
+    end
 
 end

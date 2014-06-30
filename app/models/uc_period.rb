@@ -7,7 +7,7 @@ class UcPeriod < ActiveRecord::Base
   attr_accessible :begin_date, :end_date, :user_id, :custom_message, :turned_on, :notify
 
   attr_accessible :controller_restrictions_attributes
-  accepts_nested_attributes_for :controller_restrictions
+  accepts_nested_attributes_for :controller_restrictions, :allow_destroy => true
 
   def active?(time=nil)
     # get current server time (with timezone)

@@ -44,11 +44,11 @@
                      :onclick => 'submitPreview("/uc_periods/'+@uc_period.id.to_s+'/preview/", "uc_period_form", "uc_period_form_preview"); return false;' ) %>
     </td>
   </tr>
-  <% @uc_period.controller_restrictions.each do |controller| %>
-    <%= fields_for "controller_restrictions[#{controller.id}]", controller do |cr_form| %>
+  <% f.fields_for :controller_restrictions do |controller_form| %>
+    <%#= fields_for "controller_restrictions[#{controller.id}]", controller do |cr_form| %>
       <tr style="vertical-align: top;">
         <td>
-          <%= label_tag("uc_period[controller_restrictions][#{controller.id}]", l(:settings_controller_restriction)) %>
+          <%= controller_form.label_tag("uc_period[controller_restrictions][#{controller.id}]", l(:settings_controller_restriction)) %>
         </td>
         <td>
           <%= cr_form.select :name, options_for_select(@controllers_list), {}, {class: 'select2', data: {select2_width: '195px'}, style: 'margin-right: 10px;'} %>

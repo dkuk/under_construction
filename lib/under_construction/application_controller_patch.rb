@@ -15,7 +15,7 @@ module UnderConstruction
 
     module InstanceMethods
       def check_under_construction
-        #return true if User.current.admin? || params[:controller] == 'account'
+        return true if User.current.admin? || params[:controller] == 'account'
         @uc_period = UcPeriod.order('begin_date desc').first
         is_under_construction = false
         if @uc_period && @uc_period.active?
