@@ -43,3 +43,5 @@ ru:
   label_rmplus_logo: "Данный плагин разработан командой «RM+». Вы всегда можете найти другие наши плагины на сайте"
 
   settings_controller_restriction: "Ограничения по контроллеру/экшену"
+  settings_all_controllers: "Все контроллеры"
+  settings_all_actions: "Все экшены"

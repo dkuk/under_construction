@@ -1,7 +1,7 @@
 <script type="text/javascript">
 //<![CDATA[
   $(document).ready(function(){
-
+    $('[id^="s2id_controller_restrictions_"]').addClass('controller-margin');
   });
 //]]>
 </script>
@@ -45,11 +45,12 @@
     <%= fields_for "controller_restrictions[#{controller.id}]", controller do |cr_form| %>
       <tr>
         <td>
-          <%= label_tag("controller_restrictions[#{controller.id}]", l(:settings_controller_restriction)) %>
+          <%= label_tag("uc_period[controller_restrictions][#{controller.id}]", l(:settings_controller_restriction)) %>
         </td>
         <td>
           <%= cr_form.select :name, options_for_select(@controllers_list), {}, {class: 'select2', data: {select2_width: '195px'}, style: 'margin-right: 10px;'} %>
-          <%= select_tag "uc_period[controller_restrictions[#{controller.id}]]", [], {class: 'select2', data: {select2_width: '195px'}} %>
+          <%= select_tag "uc_period[controller_restrictions][#{controller.id}][action_restrictions]", [], {class: 'select2', data: {select2_width: '195px'}} %>
+          <%= image_tag 'add.png' %>
         </td>
       </tr>
     <% end %>
