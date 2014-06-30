@@ -24,9 +24,11 @@ class UcPeriodsController < ApplicationController
 
   def index
     @uc_period ||= UcPeriod.new
-
+    #@uc_period.controller_restrictions.new
+    #  @uc_period.controller_restrictions.first.action_restrictions.new
+    #end
     @routes_list = UcPeriodsController.get_routes_list
-    @controllers_list = @routes_list.map{|route| route[:controller]}.sort
+    @controllers_list ||= @routes_list.map{|route| route[:controller]}.sort
 
     render 'show'
   end
