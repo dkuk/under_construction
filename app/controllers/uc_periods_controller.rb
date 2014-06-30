@@ -24,9 +24,7 @@ class UcPeriodsController < ApplicationController
 
   def index
     @uc_period ||= UcPeriod.new
-    #@uc_period.controller_restrictions.new
-    #  @uc_period.controller_restrictions.first.action_restrictions.new
-    #end
+    #@uc_period_controllers ||= @uc_period.controller_restrictions.build
     @routes_list = UcPeriodsController.get_routes_list
     @controllers_list ||= @routes_list.map{|route| route[:controller]}.sort
 
@@ -43,6 +41,7 @@ class UcPeriodsController < ApplicationController
   end
 
   def create
+    Rails.logger.debug "<<<< #{params[:uc_period]}"
     @uc_period = UcPeriod.new(params[:uc_period])
 
     respond_to do |format|

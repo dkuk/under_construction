@@ -2,7 +2,9 @@ class UcPeriod < ActiveRecord::Base
   unloadable
 
   belongs_to :user
-  has_many :controller_restrictions, :dependent => :destroy, :foreign_key => 'uc_period_id'
+  has_many :controller_restrictions, :dependent => :destroy
+
+  attr_accessible :begin_date, :end_date, :user_id, :custom_message, :turned_on, :notify
 
   attr_accessible :controller_restrictions_attributes
   accepts_nested_attributes_for :controller_restrictions

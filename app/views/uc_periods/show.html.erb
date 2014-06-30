@@ -9,6 +9,8 @@
 
 <h2><%= l(:admin_menu_under_construction) %></h2>
 
+<%= @uc_period.inspect %>
+
 <%= form_for(@uc_period, :html => {:id => 'uc_period_form'}) do |f| %>
 <table>
   <tr id="uc_beg_date_tr">
