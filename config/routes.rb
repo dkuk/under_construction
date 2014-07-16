@@ -15,4 +15,7 @@ RedmineApp::Application.routes.draw do
     end
   end
 
+  resources :controller_restrictions
+  resources :action_restrictions
+
 end

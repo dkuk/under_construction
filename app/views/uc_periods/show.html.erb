@@ -9,8 +9,6 @@
 
 <h2><%= l(:admin_menu_under_construction) %></h2>
 
-<%= @uc_period.inspect %>
-
 <%= form_for(@uc_period, :html => {:id => 'uc_period_form'}) do |f| %>
 <table>
   <tr id="uc_beg_date_tr">
@@ -45,20 +43,18 @@
     </td>
   </tr>
   <% f.fields_for :controller_restrictions do |controller_form| %>
-    <%#= fields_for "controller_restrictions[#{controller.id}]", controller do |cr_form| %>
-      <tr style="vertical-align: top;">
-        <td>
-          <%= controller_form.label_tag("uc_period[controller_restrictions][#{controller.id}]", l(:settings_controller_restriction)) %>
-        </td>
-        <td>
-          <%= cr_form.select :name, options_for_select(@controllers_list), {}, {class: 'select2', data: {select2_width: '195px'}, style: 'margin-right: 10px;'} %>
-          <%= select_tag "uc_period[controller_restrictions][#{controller.id}][action_restrictions]", [], {class: 'select2', data: {select2_width: '195px'}} %>
-          <%= link_to('#', class: 'icon add_controller' ) do %>
-            <%= image_tag 'add.png' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+    <tr style="vertical-align: top;">
+      <td>
+        <%= controller_form.label l(:settings_controller_restriction) %>
+      </td>
+      <td>
+        <%= controller_form.select :name, options_for_select(@controllers_list), {}, {class: 'select2', data: {select2_width: '195px'}, style: 'margin-right: 10px;'} %>
+        <%= controller_form.select "uc_period[controller_restrictions][#{controller.id}][action_restrictions]", [], {class: 'select2', data: {select2_width: '195px'}} %>
+        <%= link_to('#', class: 'icon add_controller' ) do %>
+          <%= image_tag 'add.png' %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
   <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period_user_id', l(:field_responsible)) %></td>

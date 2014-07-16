@@ -85,7 +85,18 @@ class UcPeriodsController < ApplicationController
 
   private
     def find_default_period
-      @uc_period = UcPeriod.includes(controller_restrictions: {:action_restrictions})order('begin_date desc').first
+      @uc_period = UcPeriod.includes(controller_restrictions: [:action_restrictions]).order('begin_date desc').first
+      if @uc_period.controller_restrictions.blank?
+        cr = ControllerRestriction.new(uc_period_id: @uc_period)
+        @uc_period.controller_restrictions << cr
+      end
+      @uc_period.controller_restrictions.each do |cr|
+        if cr.action_restrictions.blank?
+          ar = ActionRestriction.new(controller_restriction_id: cr)
+          cr.action_restrictions << ar
+        end
+      end
+      @uc_period
     end
 
     def require_admin
