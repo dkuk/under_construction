@@ -24,7 +24,8 @@ module UnderConstruction
                                       .where("#{ControllerRestriction.table_name}.uc_period_id = :uc_period_id AND
                                               (#{ControllerRestriction.table_name}.name = 'all' OR
                                                #{ControllerRestriction.table_name}.name = :controller_name AND
-                                               #{ActionRestriction.table_name}.name IN ('all', :action_name))",
+                                               #{ActionRestriction.table_name}.name = 'all' OR
+                                               #{ActionRestriction.table_name}.name = :action_name)",
                                       {:uc_period_id => @uc_period.id, :controller_name => controller_name, :action_name => action_name})
                                       .exists?
           else

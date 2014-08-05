@@ -42,23 +42,13 @@
                      :onclick => 'submitPreview("/uc_periods/'+@uc_period.id.to_s+'/preview/", "uc_period_form", "uc_period_form_preview"); return false;' ) %>
     </td>
   </tr>
-  <% f.fields_for :controller_restrictions do |controller_form| %>
-    <tr style="vertical-align: top;">
-      <td>
-        <%= controller_form.label l(:settings_controller_restriction) %>
-      </td>
-      <td>
-        <%= controller_form.select :name, options_for_select(@controllers_list), {}, {class: 'select2', data: {select2_width: '195px'}, style: 'margin-right: 10px;'} %>
-        <%= controller_form.select "uc_period[controller_restrictions][#{controller.id}][action_restrictions]", [], {class: 'select2', data: {select2_width: '195px'}} %>
-        <%= link_to('#', class: 'icon add_controller' ) do %>
-          <%= image_tag 'add.png' %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
   <tr>
     <td style="vertical-align: top;"><%= label_tag('tech_period_user_id', l(:field_responsible)) %></td>
     <td><%= f.select :user_id, options_for_select(User.active.sort_by(&:name).map{|u| [u.name, u.id]}, @uc_period.user_id), {}, class: 'select2' %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= %></td>
   </tr>
   <tr>
     <td><%= label_tag('uc_period_turned_on', l(:field_turned_on)) %></td>
