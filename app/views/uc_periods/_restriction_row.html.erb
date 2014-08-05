@@ -1,0 +1,10 @@
+<tr>
+  <td></td>
+  <td>
+    <%= l(:label_uc_controller) %>:
+    <%= select_tag '', options_from_collection_for_select(@controllers, "id", "name") %>
+
+    <%= l(:label_uc_action) %>:
+    <%= select_tag '', options_from_collection_for_select(@controllers, "id", "name") %>
+  </td>
+</tr>

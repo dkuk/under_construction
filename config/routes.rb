@@ -7,6 +7,9 @@ RedmineApp::Application.routes.draw do
       get 'under_construction'
       get 'update_msg_head'
     end
+    member do
+      get 'add_restriction'
+    end
   end
 
   resources :uc_browser_restrictions do

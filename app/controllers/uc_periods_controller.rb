@@ -28,10 +28,14 @@ class UcPeriodsController < ApplicationController
       @uc_period.controller_restrictions.build
       @uc_period.controller_restrictions.each{|cr| cr.action_restrictions.build}
     end
-    @routes_list = UcPeriodsController.get_routes_list
-    @controllers_list ||= @routes_list.map{|route| route[:controller]}.sort
+    @routes = UcPeriodsController.get_routes_list
+    @controllers ||= @routes.map{|route| route[:controller]}.sort
 
     render 'show'
+  end
+
+  def add_restriction
+    @uc_period = UcPeriod.find(params[:id])
   end
 
   def update_msg_head

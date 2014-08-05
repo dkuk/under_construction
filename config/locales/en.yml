@@ -45,3 +45,8 @@ en:
   settings_controller_restriction: "Controller/action restrictions"
   settings_all_controllers: "All controllers"
   settings_all_actions: "All actions"
+
+  label_uc_filters: "Filters"
+  label_uc_add_restriction: "Add filter"
+  label_uc_controller: "Controller"
+  label_uc_action: "Action"
