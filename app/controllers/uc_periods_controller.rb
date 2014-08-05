@@ -4,38 +4,21 @@ class UcPeriodsController < ApplicationController
 
   before_filter :require_admin, :except => [:add_restriction, :update_msg_head, :under_construction]
 
-  $ROUTES_LIST = []
-
-  def self.get_routes_list
-    if not $ROUTES_LIST.any?
-      Rails.application.reload_routes!
-      $ROUTES_LIST = Rails.application.routes.routes.group_by{|route| route.defaults[:controller]}.collect do |controller, values|
-        actions = []
-        values.each do |v|
-          actions << v.defaults[:action]
-        end
-        actions = actions.reject{|action| action.nil? || action.empty?}.uniq
-        {controller: controller.to_s, actions: actions}
-      end
-    end
-    $ROUTES_LIST
-  end
-
   def index
     @uc_period = find_default_period
     if @uc_period.nil?
       @uc_period = UcPeriod.new
     end
-    @routes = UcPeriodsController.get_routes_list
-    @controllers ||= @routes.map{|route| route[:controller]}.sort
+    @routes = UcRoute.routes
+    @controllers ||= UcRoute.controllers
     Rails.logger.debug "<<<< @controllers = #{@controllers}"
     render 'show'
   end
 
   def add_restriction
     @uc_period = UcPeriod.find(params[:id])
-    @routes = UcPeriodsController.get_routes_list
-    @controllers ||= @routes.map{|route| route[:controller]}.sort
+    @routes = UcRoute.routes
+    @controllers ||= UcRoute.controllers
 
     render 'add_restriction'
   end
