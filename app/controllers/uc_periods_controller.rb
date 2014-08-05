@@ -2,7 +2,7 @@ class UcPeriodsController < ApplicationController
 
   layout 'admin'
 
-  before_filter :require_admin, :except => [:update_msg_head, :under_construction]
+  before_filter :require_admin, :except => [:add_restriction, :update_msg_head, :under_construction]
 
   $ROUTES_LIST = []
 
@@ -25,26 +25,24 @@ class UcPeriodsController < ApplicationController
     @uc_period = find_default_period
     if @uc_period.nil?
       @uc_period = UcPeriod.new
-      @uc_period.controller_restrictions.build
-      @uc_period.controller_restrictions.each{|cr| cr.action_restrictions.build}
     end
     @routes = UcPeriodsController.get_routes_list
     @controllers ||= @routes.map{|route| route[:controller]}.sort
-
+    Rails.logger.debug "<<<< @controllers = #{@controllers}"
     render 'show'
   end
 
   def add_restriction
     @uc_period = UcPeriod.find(params[:id])
+    @routes = UcPeriodsController.get_routes_list
+    @controllers ||= @routes.map{|route| route[:controller]}.sort
+
+    render 'add_restriction'
   end
 
   def update_msg_head
     @uc_period = UcPeriod.new(params[:uc_period])
     render :partial => 'update_msg_head'
-  end
-
-  def edit
-    @uc_period = UcPeriod.find(params[:id])
   end
 
   def create

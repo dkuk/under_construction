@@ -2,9 +2,15 @@
   <td></td>
   <td>
     <%= l(:label_uc_controller) %>:
-    <%= select_tag '', options_from_collection_for_select(@controllers, "id", "name") %>
+    <% Rails.logger.debug "<<<< @controllers = #{@controllers}" %>
+    <%= select_tag '3235235', options_for_select(@controllers), class: 'select2 uc', data: {select2_width: '200px'} %>
 
-    <%= l(:label_uc_action) %>:
-    <%= select_tag '', options_from_collection_for_select(@controllers, "id", "name") %>
+    <span style="margin-left: 10px;"><%= l(:label_uc_action) %>:</span>
+    <%= select_tag '1231231', options_for_select(@controllers), class: 'select2 uc', data: {select2_width: '200px'} %>
   </td>
 </tr>
+<script type="text/javascript">
+//<![CDATA[
+  $('.select2.uc').select2({width: '200px'});
+//]]>
+</script>

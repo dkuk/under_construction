@@ -46,14 +46,15 @@
     <td style="vertical-align: top;"><%= label_tag('tech_period_user_id', l(:field_responsible)) %></td>
     <td><%= f.select :user_id, options_for_select(User.active.sort_by(&:name).map{|u| [u.name, u.id]}, @uc_period.user_id), {}, class: 'select2' %></td>
   </tr>
-  <tr>
+  <tr id="add_uc_filter">
     <td><%= l(:label_uc_filters) %></td>
     <td>
       <span>
-        <%= link_to(content_tag(:span, l(:label_uc_add_restriction)), url_for(controller: 'uc_periods', action: 'add_restriction', id: @uc_period.id), class: 'in_link icon icon-add', id: 'sd_add_var') %>
+        <%= link_to(content_tag(:span, l(:label_uc_add_restriction)), url_for(controller: 'uc_periods', action: 'add_restriction', id: @uc_period.id), remote: true, class: 'in_link icon icon-add', id: 'sd_add_var') %>
       </span>
     </td>
   </tr>
+  <%= render :partial => 'uc_periods/restriction_row' %>
   <tr>
     <td><%= label_tag('uc_period_turned_on', l(:field_turned_on)) %></td>
     <td><%= f.check_box :turned_on %></td>
