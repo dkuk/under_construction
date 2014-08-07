@@ -1,2 +1,2 @@
-$('#add_uc_filter').after("<%= escape_javascript(render :partial => 'uc_periods/restriction_row') %>");
-console.log('sdfsdfsd');
+$('#turned_on').before("<%= escape_javascript(render :partial => 'uc_periods/restriction_row', locals: {uc_restriction: nil, timestamp: @timestamp}) %>");
+$('#ur-<%= @timestamp %> .select2.uc').select2({width: '200px'});

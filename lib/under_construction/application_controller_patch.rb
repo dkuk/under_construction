@@ -19,13 +19,10 @@ module UnderConstruction
         @uc_period = UcPeriod.order('begin_date desc').first
         is_under_construction = false
         if @uc_period && @uc_period.active?
-          if @uc_period.controller_restrictions.any?
-            is_under_construction = ControllerRestriction.joins(:action_restrictions)
-                                      .where("#{ControllerRestriction.table_name}.uc_period_id = :uc_period_id AND
-                                              (#{ControllerRestriction.table_name}.name = 'all' OR
-                                               #{ControllerRestriction.table_name}.name = :controller_name AND
-                                               #{ActionRestriction.table_name}.name = 'all' OR
-                                               #{ActionRestriction.table_name}.name = :action_name)",
+          if @uc_period.uc_restrictions.any?
+            is_under_construction = UcRestriction.where("#{UcRestriction.table_name}.uc_period_id = :uc_period_id AND
+                                                        (#{UcRestriction.table_name}.controller IN ('all', :controller_name) AND
+                                                         #{UcRestriction.table_name}.action IN ('all', :action_name))",
                                       {:uc_period_id => @uc_period.id, :controller_name => controller_name, :action_name => action_name})
                                       .exists?
           else

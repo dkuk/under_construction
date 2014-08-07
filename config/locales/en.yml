@@ -50,3 +50,4 @@ en:
   label_uc_add_restriction: "Add filter"
   label_uc_controller: "Controller"
   label_uc_action: "Action"
+  label_uc_all: "all"

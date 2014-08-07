@@ -50,3 +50,4 @@ ru:
   label_uc_add_restriction: "Добавить фильтр"
   label_uc_controller: "Контроллер"
   label_uc_action: "Метод"
+  label_uc_all: "все"

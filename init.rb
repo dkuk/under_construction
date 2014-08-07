@@ -22,4 +22,7 @@ require 'under_construction/view_hooks'
 
 Rails.application.config.to_prepare do
   ApplicationController.send(:include, UnderConstruction::ApplicationControllerPatch)
+
+  UcRoute.routes
+  UcRoute.controllers
 end

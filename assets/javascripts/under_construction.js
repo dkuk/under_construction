@@ -21,6 +21,18 @@ $(document).ready(function () {
     localStorage['uc_warn_state'] = 'closed';
   });
 
+  $(document.body).on('change', '.uc-controller', function(event) {
+    var $select = $(event.target);
+    var $actions_select = $select.siblings('select').first();
+    var controller = $select.val();
+    var action_options = $('#all_actions optgroup[label='+ controller +']').children().clone();
+    $actions_select.children().filter(function(index){
+      return this.innerHTML !== "&nbsp;";
+    }).remove();
+    $actions_select.select2("val", "");
+    $actions_select.append(action_options);
+  });
+
   uc_show_warn_if_needed();
 });
 

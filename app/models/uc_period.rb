@@ -2,12 +2,14 @@ class UcPeriod < ActiveRecord::Base
   unloadable
 
   belongs_to :user
-  has_many :controller_restrictions, :dependent => :destroy
+  has_many :uc_restrictions, :dependent => :destroy
 
   attr_accessible :begin_date, :end_date, :user_id, :custom_message, :turned_on, :notify
 
-  attr_accessible :controller_restrictions_attributes
-  accepts_nested_attributes_for :controller_restrictions, :allow_destroy => true
+  accepts_nested_attributes_for :uc_restrictions, allow_destroy: true,
+                                                  reject_if: lambda {|attrs| attrs[:controller].blank? || attrs[:action].blank? }
+
+  attr_accessible :uc_restrictions_attributes
 
   def active?(time=nil)
     # get current server time (with timezone)

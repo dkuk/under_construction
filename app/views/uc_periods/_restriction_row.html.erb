@@ -1,16 +1,19 @@
-<tr>
+<tr id="ur-<%= timestamp %>">
   <td></td>
   <td>
     <%= l(:label_uc_controller) %>:
-    <% Rails.logger.debug "<<<< @controllers = #{@controllers}" %>
-    <%= select_tag '3235235', options_for_select(@controllers), class: 'select2 uc', data: {select2_width: '200px'} %>
-
+    <%= select_tag 'uc_period[uc_restrictions_attributes][][controller]', options_for_select(@controllers, uc_restriction.present? ? uc_restriction.controller : ''), include_blank: true, class: 'select2 uc uc-controller', data: {select2_width: '200px'} %>
     <span style="margin-left: 10px;"><%= l(:label_uc_action) %>:</span>
-    <%= select_tag '1231231', options_for_select(@controllers), class: 'select2 uc', data: {select2_width: '200px'} %>
+
+    <% if uc_restriction.present? %>
+      <%= select_tag 'uc_period[uc_restrictions_attributes][][action]', options_for_select(UcRoute.actions(uc_restriction.controller), uc_restriction.action), include_blank: true, class: 'select2 uc uc-action', data: {select2_width: '200px'} %>
+    <% else %>
+      <%= select_tag 'uc_period[uc_restrictions_attributes][][action]', '', include_blank: true, class: 'select2 uc uc-action', data: {select2_width: '200px'} %>
+    <% end %>
+    <% if uc_restriction.present? && uc_restriction.id %>
+      <%= hidden_field_tag 'uc_period[uc_restrictions_attributes][][id]', uc_restriction.id %>
+    <% end %>
+    <%= hidden_field_tag 'uc_period[uc_restrictions_attributes][][timestamps]', timestamp %>
+    <%= link_to("<span>#{l(:button_delete)}</span>".html_safe, url_for(controller: 'uc_restrictions', action: 'destroy', id: uc_restriction.present? ? uc_restriction.id : nil, tr_id: ("#ur-" + timestamp.to_s)), method: :delete, remote: true, :class => "in_link icon icon-del" ) %>
   </td>
 </tr>
-<script type="text/javascript">
-//<![CDATA[
-  $('.select2.uc').select2({width: '200px'});
-//]]>
-</script>
