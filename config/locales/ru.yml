@@ -46,7 +46,7 @@ ru:
   settings_all_controllers: "Все контроллеры"
   settings_all_actions: "Все экшены"
 
-  label_uc_filters: "Фильтры"
+  label_uc_filters: "Ограничить на страницах"
   label_uc_add_restriction: "Добавить фильтр"
   label_uc_controller: "Контроллер"
   label_uc_action: "Метод"
