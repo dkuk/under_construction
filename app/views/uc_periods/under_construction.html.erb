@@ -70,13 +70,9 @@ h2 {
         <% end %>
       </div>
       <% if User.current.anonymous? %>
-        <a id="login_link_uc" class="logout btn btn-warning" href="/login">
-          <span><%= l(:label_login_to_rm) %></span>
-        </a>
+        <%= link_to "<span>#{l(:label_login_to_rm)}</span>".html_safe, { controller: :account, action: :logout }, id: 'login_link_uc', class: 'logout btn btn-warning' %>
       <% else %>
-        <a id="logout_link_uc" class="logout btn btn-warning" rel="nofollow" data-method="post" href="/logout">
-          <span><%= l(:label_logout) %></span>
-        </a>
+        <%= link_to "<span>#{l(:label_logout)}</span>".html_safe, { controller: :account, action: :logout }, id: 'logout_link_uc', class: 'logout btn btn-warning', method: :post %>
       <% end %>
   </div>
 </div>
@@ -85,10 +81,6 @@ h2 {
 $(document).ready(function () {
   uc_center_warn();
 
-  $("#logout_link_uc").click(function () {
-    $.ajax({ type: 'POST',
-             url: '/logout' });
-  })
 });
 
 function uc_center_warn () {
